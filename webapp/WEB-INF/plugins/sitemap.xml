@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?><plug-in>
+    
+    <!-- Plugin Informations -->
+    <name>sitemap</name>
+    <class>fr.paris.lutece.portal.service.plugin.PluginDefaultImplementation</class>
+    <version>1.1.4</version>
+    <description>sitemap.plugin.description</description>
+    <documentation/>
+    <installation/>
+    <changes/>
+    <user-guide/>
+    <provider>sitemap.plugin.provider</provider>
+    <provider-url>http://lutece.paris.fr</provider-url>
+    <icon-url>images/admin/skin/plugins/sitemap/sitemap.png</icon-url>
+    <copyright>Copyright 2001-2009 Mairie de Paris</copyright>
+    <core-version-dependency>
+		<min-core-version>2.3.0</min-core-version>
+		<max-core-version/>	
+	</core-version-dependency>
+    <db-pool-required>0</db-pool-required>
+    
+    <daemons>
+        <daemon>
+            <daemon-id>generateXmlSiteMapFile</daemon-id>
+            <daemon-name>sitemap.daemon.generateXmlSiteMapFile.name</daemon-name>
+            <daemon-description>sitemap.daemon.generateXmlSiteMapFile.description</daemon-description>
+            <daemon-class>fr.paris.lutece.plugins.sitemap.service.SiteMapDaemon</daemon-class>
+        </daemon>
+    </daemons>
+</plug-in>
