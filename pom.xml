@@ -10,7 +10,7 @@
 	<groupId>fr.paris.lutece.plugins</groupId>
 	<artifactId>plugin-sitemap</artifactId>
 	<packaging>lutece-plugin</packaging>
-	<version>1.1.4</version>
+	<version>1.1.5-SNAPSHOT</version>
 	<name>Lutece sitemap plugin</name>
 
 	<repositories>
@@ -36,8 +36,8 @@
 		<jiraComponentId>10122</jiraComponentId>
 	</properties>
     <scm>
-        <connection>scm:svn:http://dev.lutece.paris.fr/svn/lutece/portal/tags/plugin-sitemap-1.1.4</connection>
-        <developerConnection>scm:svn:https://dev.lutece.paris.fr/svn/lutece/portal/tags/plugin-sitemap-1.1.4</developerConnection>
-        <url>http://dev.lutece.paris.fr/viewvc/lutece/portal/tags/plugin-sitemap-1.1.4</url>
+        <connection>scm:svn:http://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/seo/plugin-sitemap</connection>
+        <developerConnection>scm:svn:https://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/seo/plugin-sitemap</developerConnection>
+        <url>http://dev.lutece.paris.fr/viewvc/lutece/portal/trunk/plugins/seo/plugin-sitemap</url>
     </scm>
 </project>
