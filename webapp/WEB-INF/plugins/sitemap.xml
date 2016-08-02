@@ -3,7 +3,7 @@
     <!-- Plugin Informations -->
     <name>sitemap</name>
     <class>fr.paris.lutece.portal.service.plugin.PluginDefaultImplementation</class>
-    <version>1.1.4</version>
+    <version>1.1.5-SNAPSHOT</version>
     <description>sitemap.plugin.description</description>
     <documentation/>
     <installation/>
