@@ -64,7 +64,7 @@ public class SiteMapDaemon extends Daemon
         }
         catch ( IOException e )
         {
-            AppLogService.error( "Error writing file : " + e.getMessage(  ), e.getCause(  ) );
+            AppLogService.error( "Error writing file : {}", e.getMessage(  ), e.getCause(  ) );
             setLastRunLogs( "Site Map generation failed. Error : " + e.getMessage(  ) );
         }
     }
