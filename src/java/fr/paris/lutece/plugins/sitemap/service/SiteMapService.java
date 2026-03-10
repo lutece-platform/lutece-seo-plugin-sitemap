@@ -53,10 +53,6 @@ public final class SiteMapService
     private static final String DEFAULT_DATE = "2007-12-23";
     private static final String PROPERTY_LUTECE_PROD_URL = "lutece.prod.url";
     private static final String PROPERTY_CHANGE_FREQUENCY_PAGE = "sitemap.page.changefreq";
-    private static final String PROPERTY_CHANGE_FREQUENCY_DOCUMENT = "sitemap.document.changefreq";
-    private static final String SQL_FIND_DOCUMENTS = "SELECT document_published.id_document, core_portlet.id_portlet , core_portlet.date_update " +
-        " FROM core_portlet, document_published " +
-        " WHERE core_portlet.id_portlet_type = 'DOCUMENT_LIST_PORTLET' and core_portlet.id_portlet = document_published.id_portlet and core_portlet.id_page = ?";
     private static final String SQL_FIND_PAGES = "select date_update from core_page where core_page.id_page = ?";
 
     /**
@@ -104,8 +100,6 @@ public final class SiteMapService
             XmlUtil.addElement( strXml, TAG_CHANGE_FREQ, strChangeFrequency );
             XmlUtil.endElement( strXml, TAG_URL );
 
-            findDocuments( strXml, page.getId(  ), priority );
-
             for ( Page pageChild : PageHome.getChildPages( nPageId ) )
             {
                 findPages( strXml, pageChild.getId(  ), nLevel + 1 );
@@ -136,33 +130,4 @@ public final class SiteMapService
         return strModificationDate;
     }
 
-    /**
-     *
-     * @param strXml The XML document to String
-     * @param nPageId The current page ID
-     * @param priority The priority
-     */
-    private static void findDocuments( StringBuffer strXml, int nPageId, Double priority )
-    {
-        String strChangeFrequency = AppPropertiesService.getProperty( PROPERTY_CHANGE_FREQUENCY_DOCUMENT );
-        String strBaseUrl = AppPropertiesService.getProperty( PROPERTY_LUTECE_PROD_URL );
-
-        try ( DAOUtil daoUtil = new DAOUtil( SQL_FIND_DOCUMENTS ) )
-        {
-            daoUtil.setInt( 1, nPageId );
-            daoUtil.executeQuery(  );
-
-            while ( daoUtil.next(  ) )
-            {
-                XmlUtil.beginElement( strXml, TAG_URL );
-                XmlUtil.addElement( strXml, TAG_LOC,
-                    strBaseUrl + "/jsp/site/Portal.jsp?document_id=" + daoUtil.getInt( 1 ) + "&amp;portlet_id=" +
-                    daoUtil.getInt( 2 ) );
-                XmlUtil.addElement( strXml, TAG_PRIORITY, priority.toString(  ) );
-                XmlUtil.addElement( strXml, TAG_LAST_MOD, daoUtil.getString( 3 ).substring( 0, 10 ) );
-                XmlUtil.addElement( strXml, TAG_CHANGE_FREQ, strChangeFrequency );
-                XmlUtil.endElement( strXml, TAG_URL );
-            }
-        }
-    }
 }
