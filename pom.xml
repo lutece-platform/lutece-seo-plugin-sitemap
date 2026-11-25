@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <artifactId>lutece-global-pom</artifactId>
@@ -8,8 +9,14 @@
     <groupId>fr.paris.lutece.plugins</groupId>
     <artifactId>plugin-sitemap</artifactId>
     <packaging>lutece-plugin</packaging>
-    <version>2.0.0-SNAPSHOT</version>
     <name>Lutece sitemap plugin</name>
+    <version>2.0.1-SNAPSHOT</version>
+    <scm>
+        <connection>scm:git:https://github.com/lutece-platform/lutece-seo-plugin-sitemap.git</connection>
+        <developerConnection>scm:git:https://github.com/lutece-platform/lutece-seo-plugin-sitemap.git</developerConnection>
+        <tag>HEAD</tag>
+        <url>https://github.com/lutece-platform/lutece-seo-plugin-sitemap.git</url>
+    </scm>
     <repositories>
         <repository>
             <id>lutece</id>
@@ -18,15 +25,15 @@
             <layout>default</layout>
         </repository>
         <repository>
-            <id>lutece-snapshot</id>
-            <name>luteceSnapshotRepository</name>
-            <url>https://dev.lutece.paris.fr/snapshot_repository</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
             <releases>
                 <enabled>false</enabled>
             </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <id>lutece-snapshot</id>
+            <name>luteceSnapshotRepository</name>
+            <url>https://dev.lutece.paris.fr/snapshot_repository</url>
         </repository>
     </repositories>
     <dependencies>
@@ -42,10 +49,4 @@
         <jiraProjectName>SITEMAP</jiraProjectName>
         <jiraComponentId>10122</jiraComponentId>
     </properties>
-    <scm>
-        <connection>scm:git:https://github.com/lutece-platform/lutece-seo-plugin-sitemap.git</connection>
-        <developerConnection>scm:git:https://github.com/lutece-platform/lutece-seo-plugin-sitemap.git</developerConnection>
-        <url>https://github.com/lutece-platform/lutece-seo-plugin-sitemap.git</url>
-      <tag>HEAD</tag>
-  </scm>
 </project>
