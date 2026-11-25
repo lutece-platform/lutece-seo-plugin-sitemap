@@ -35,6 +35,7 @@ package fr.paris.lutece.plugins.sitemap.service;
 
 import fr.paris.lutece.portal.business.page.Page;
 import fr.paris.lutece.portal.business.page.PageHome;
+import fr.paris.lutece.portal.service.security.SecurityService;
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
 import fr.paris.lutece.util.sql.DAOUtil;
 import fr.paris.lutece.util.xml.XmlUtil;
@@ -91,7 +92,7 @@ public final class SiteMapService
         String strChangeFrequency = AppPropertiesService.getProperty( PROPERTY_CHANGE_FREQUENCY_PAGE );
         String strBaseUrl = AppPropertiesService.getProperty( PROPERTY_LUTECE_PROD_URL );
 
-        if ( page.isVisible( null ) )
+        if ( isPublic( page ) )
         {
             XmlUtil.beginElement( strXml, TAG_URL );
             XmlUtil.addElement( strXml, TAG_LOC, strBaseUrl + "/jsp/site/Portal.jsp?page_id=" + page.getId(  ) );
@@ -105,6 +106,18 @@ public final class SiteMapService
                 findPages( strXml, pageChild.getId(  ), nLevel + 1 );
             }
         }
+    }
+
+    /**
+     * Tells whether a page is shown to anonymous visitors. The sitemap is built by a daemon, without request nor user:
+     * {@link Page#isVisible} would look for the user of a null request (NullPointerException with an external
+     * authentication), and a page restricted to a role is not for the crawlers anyway
+     * @param page The page
+     * @return true if the page has no role or if the front office authentication is off
+     */
+    private static boolean isPublic( Page page )
+    {
+        return !SecurityService.isAuthenticationEnable(  ) || Page.ROLE_NONE.equals( page.getRole(  ) );
     }
 
     /**
